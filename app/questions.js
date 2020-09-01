@@ -6,4 +6,4 @@ var initialQuestion = [
     choices: ["Department", "Roles", "Employee"],
   },
 ];
-module.exports = questions;
+module.exports = initialQuestion;

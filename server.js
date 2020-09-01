@@ -1,12 +1,20 @@
 var express = require("express");
 var mysql = require("mysql");
 const inquirer = require("inquirer");
-var express = require("express");
-var questions = require("./app/questions");
+const initialQuestion = require("./app/questions");
 
 var app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-inquirer.prompt(questions.initialQuestion).then((answers) => {});
+app.use(express.static("./app"));
+
+inquirer
+  .prompt(initialQuestion)
+  .then((answers) => {
+    return answers;
+  })
+  .then(function (result) {
+    console.log(answers);
+  });
