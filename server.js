@@ -13,8 +13,14 @@ app.use(express.static("./app"));
 inquirer
   .prompt(initialQuestion)
   .then((answers) => {
-    return answers;
+    console.log(answers.questionStart);
+    var initialQ = answers.questionStart;
   })
   .then(function (result) {
-    console.log(answers);
+    if (initialQ === "Department") {
+    } else if (initialQ === "Roles") {
+    }
+    else (initialQ === "Department") {
+        
+    };
   });
