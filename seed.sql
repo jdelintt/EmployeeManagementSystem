@@ -14,18 +14,19 @@ CREATE TABLE employee
   (30) NOT NULL,
   last_name VARCHAR
   (30) NOT NULL,
-  -- role_id int,
-  -- PRIMARY KEY
-  -- (role_id)
+  dept_id int NOT NULL,
+  manager_id int NULL
+
 );
 
-  CREATE TABLE employee_role
+  CREATE TABLE role
   (
     id int NOT NULL
     AUTO INCREMENT, 
     title VARCHAR
     (30) NOT NULL,
     salary DECIMAL
+    dept_id int NULL
     -- department_id
   
 );
@@ -33,13 +34,9 @@ CREATE TABLE employee
     CREATE TABLE department_id
     (
       id int NOT NULL
-      AUTO INCREMENT, 
-  dept_name VARCHAR
+      AUTO_INCREMENT, 
+      dept_name VARCHAR
       (30)
 );
 
-  -- Insert a set of records.
-  -- INSERT INTO plans
-  --   (plan)
-  -- VALUES
-  --   ('Plan to fight a ninja.');
+
