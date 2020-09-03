@@ -70,6 +70,18 @@ const orm = {
       );
     });
   },
+  updateDepartment(id, values) {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "UPDATE department SET ? WHERE ?",
+        [values, { id }],
+        (err, data) => {
+          if (err) reject(err);
+          resolve(data);
+        }
+      );
+    });
+  },
 };
 
 module.exports = orm;

@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 require("console.table");
 
 const orm = require("./db");
+const { updateEmployee } = require("./db");
 
 // const initialQuestion = require("./app/questions");
 
@@ -53,6 +54,9 @@ async function loop() {
         case "Add Employee":
           await addEmployee();
           break;
+        case "Update Employee":
+          await updateEmployee();
+          break;
         case "Exit":
           running = false;
           console.log("Thanks... Bye!!!");
@@ -77,6 +81,7 @@ async function displayMenu() {
         "Add Department",
         "Add Role",
         "Add Employee",
+        "Update Employee",
         "Exit",
       ],
     },
@@ -138,7 +143,31 @@ async function addRole() {
   orm.createRole(responses);
 }
 
-async function addEmployee() {}
+async function addEmployee() {
+  const roles = await orm.getRoles();
+  const responses = await inquirer.prompt([
+    {
+      type: "input",
+      name: "first_name",
+      message: "What is the employees first name?",
+    },
+    {
+      type: "input",
+      name: "last_name",
+      message: "What is the employees last name?",
+    },
+    {
+      type: "list",
+      name: "role_id",
+      message: "What role does this employee have?",
+      choices: roles.map((role) => ({
+        title: role.title,
+        value: role.id,
+      })),
+    },
+  ]);
+  orm.createEmployee(responses);
+}
 
 // inquirer
 //   .prompt(initialQuestion)
